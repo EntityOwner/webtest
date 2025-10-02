@@ -76,19 +76,19 @@ window.addEventListener('hashchange', applyHashHighlight);
 let lastToken = '';
 function parseSessionJson() {
   const raw = $('#sessionJson').value.trim();
-  if (!raw) { $('#sessionStatus').textContent = 'Р’СЃС‚Р°РІСЊС‚Рµ JSON РёР· /api/auth/session'; return; }
+  if (!raw) { $('#sessionStatus').textContent = 'Вставьте JSON из /api/auth/session'; return; }
   try {
     const obj = JSON.parse(raw);
     const token = obj?.accessToken || '';
-    if (!token) throw new Error('accessToken РЅРµ РЅР°Р№РґРµРЅ');
+    if (!token) throw new Error('accessToken не найден');
     lastToken = token;
-    $('#sessionStatus').textContent = 'РўРѕРєРµРЅ РЅР°Р№РґРµРЅ Рё РіРѕС‚РѕРІ Рє РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ.';
+    $('#sessionStatus').textContent = 'Токен найден и готов к использованию.';
     $('[data-action="copy-token"]').disabled = false;
     $('[data-action="copy-api-code"]').disabled = false;
-    toast('РўРѕРєРµРЅ РЅР°Р№РґРµРЅ');
+    toast('Токен найден');
   } catch (e) {
     lastToken = '';
-    $('#sessionStatus').textContent = 'РћС€РёР±РєР°: ' + e.message;
+    $('#sessionStatus').textContent = 'Ошибка: ' + e.message;
     $('[data-action="copy-token"]').disabled = true;
     $('[data-action="copy-api-code"]').disabled = true;
   }
@@ -124,15 +124,12 @@ function onClick(e) {
 
   switch (action) {
     case 'copy-bookmarklet':
-      writeClipboard(BOOKMARKLET_SPEC).then(ok => toast(ok ? 'РљРѕРґ Р·Р°РєР»Р°РґРєРё СЃРєРѕРїРёСЂРѕРІР°РЅ' : 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ'));
-      break;
-    case 'how-bookmark':
-      alert('РРЅСЃС‚СЂСѓРєС†РёСЏ: СЃРѕР·РґР°Р№С‚Рµ РЅРѕРІСѓСЋ Р·Р°РєР»Р°РґРєСѓ Рё РІСЃС‚Р°РІСЊС‚Рµ СЃРєРѕРїРёСЂРѕРІР°РЅРЅС‹Р№ РєРѕРґ РІ РїРѕР»Рµ URL. Р—Р°С‚РµРј РѕС‚РєСЂРѕР№С‚Рµ chatgpt.com Рё РЅР°Р¶РјРёС‚Рµ Р·Р°РєР»Р°РґРєСѓ.');
+      writeClipboard(BOOKMARKLET_SPEC).then(ok => toast(ok ? 'Код закладки скопирован' : 'Не удалось скопировать'));
       break;
     case 'copy-console':
       loadConsoleCode()
         .then(code => writeClipboard(code))
-        .then(ok => toast(ok ? 'РљРѕРґ РґР»СЏ РєРѕРЅСЃРѕР»Рё СЃРєРѕРїРёСЂРѕРІР°РЅ' : 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ'));
+        .then(ok => toast(ok ? 'Код для консоли скопирован' : 'Не удалось скопировать'));
       break;
     case 'parse-json':
       parseSessionJson();
@@ -143,22 +140,22 @@ function onClick(e) {
       $('#sessionStatus').textContent = '';
       $('[data-action="copy-token"]').disabled = true;
       $('[data-action="copy-api-code"]').disabled = true;
-      toast('РџРѕР»Рµ РѕС‡РёС‰РµРЅРѕ');
+      toast('Поле очищено');
       break;
     case 'copy-token':
       if (!lastToken) return;
-      writeClipboard(lastToken).then(ok => toast(ok ? 'accessToken СЃРєРѕРїРёСЂРѕРІР°РЅ' : 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ'));
+      writeClipboard(lastToken).then(ok => toast(ok ? 'accessToken скопирован' : 'Не удалось скопировать'));
       break;
     case 'copy-api-code':
       if (!lastToken) return;
-      writeClipboard(buildApiCodeFromToken(lastToken)).then(ok => toast(ok ? 'РљРѕРґ Р·Р°РїСЂРѕСЃР° СЃРєРѕРїРёСЂРѕРІР°РЅ' : 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ'));
+      writeClipboard(buildApiCodeFromToken(lastToken)).then(ok => toast(ok ? 'Код запроса скопирован' : 'Не удалось скопировать'));
       break;
     case 'send-to-manager': {
       const raw = $('#sessionJson').value.trim();
-      if (!raw) { toast('РџРѕР»Рµ РїСѓСЃС‚РѕРµ вЂ” РІСЃС‚Р°РІСЊС‚Рµ JSON'); return; }
+      if (!raw) { toast('Поле пустое — вставьте JSON'); return; }
       const wrapped = '```\n' + raw + '\n```';
       writeClipboard(wrapped).then(() => {
-        toast('РЎРєРѕРїРёСЂРѕРІР°РЅРѕ. РћС‚РєСЂС‹РІР°СЋ Telegram РјРµРЅРµРґР¶РµСЂР°...');
+        toast('Скопировано. Открываю Telegram менеджера...');
         window.open('https://t.me/fursovtech', '_blank');
       });
       break;
@@ -174,7 +171,7 @@ document.addEventListener('click', onClick);
 applyHashHighlight();
 
 // Title marquee (cyclic scrolling in the tab)
-const BASE_TITLE = ' Fursov - your payment assistance | '; // padded for smooth loop
+const BASE_TITLE = ' Fursov - your payment assistance | ';
 let marquee = BASE_TITLE;
 setInterval(() => {
   marquee = marquee.slice(1) + marquee[0];
@@ -188,7 +185,3 @@ setInterval(() => {
     try { link.setAttribute('href', BOOKMARKLET_SPEC); } catch {}
   }
 })();
-
-
-
-
