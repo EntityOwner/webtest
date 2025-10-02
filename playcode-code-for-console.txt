@@ -1,0 +1,21 @@
+const a = {
+  plan_name: 'chatgptplusplan',
+  billing_details: { country: 'US', currency: 'USD' },
+  promo_code: null,
+  checkout_ui_mode: 'redirect'
+};
+
+const authReq = await fetch('/api/auth/session', { credentials: "include"})
+const authRes = await authReq.json();
+const authToken = authRes.accessToken;
+
+const res = await fetch("https://chatgpt.com/backend-api/payments/checkout", {
+  body: JSON.stringify(a),
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json", "authorization": `Bearer ${authToken}`}
+});
+
+const data = await res.json();
+
+data.url
