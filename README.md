@@ -4,6 +4,7 @@
 
 [![ChatGPT](https://img.shields.io/badge/ChatGPT-Plus-74aa9c?style=for-the-badge&logo=openai)](https://chatgpt.com)
 [![Fursov Store](https://img.shields.io/badge/Fursov-Store-5464eb?style=for-the-badge)](https://fursov.store/)
+# [🌐 Открыть сайт](https://entityowner.github.io/webtest/)
 
 ---
 
