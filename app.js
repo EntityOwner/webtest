@@ -1,4 +1,4 @@
-// App (ESM): clipboard, toasts, hash highlight, and actions per variants
+﻿// App (ESM): clipboard, toasts, hash highlight, and actions per variants
 
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
@@ -76,19 +76,19 @@ window.addEventListener('hashchange', applyHashHighlight);
 let lastToken = '';
 function parseSessionJson() {
   const raw = $('#sessionJson').value.trim();
-  if (!raw) { $('#sessionStatus').textContent = 'Вставьте JSON из /api/auth/session'; return; }
+  if (!raw) { $('#sessionStatus').textContent = 'Р’СЃС‚Р°РІСЊС‚Рµ JSON РёР· /api/auth/session'; return; }
   try {
     const obj = JSON.parse(raw);
     const token = obj?.accessToken || '';
-    if (!token) throw new Error('accessToken не найден');
+    if (!token) throw new Error('accessToken РЅРµ РЅР°Р№РґРµРЅ');
     lastToken = token;
-    $('#sessionStatus').textContent = 'Токен найден и готов к использованию.';
+    $('#sessionStatus').textContent = 'РўРѕРєРµРЅ РЅР°Р№РґРµРЅ Рё РіРѕС‚РѕРІ Рє РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ.';
     $('[data-action="copy-token"]').disabled = false;
     $('[data-action="copy-api-code"]').disabled = false;
-    toast('Токен найден');
+    toast('РўРѕРєРµРЅ РЅР°Р№РґРµРЅ');
   } catch (e) {
     lastToken = '';
-    $('#sessionStatus').textContent = 'Ошибка: ' + e.message;
+    $('#sessionStatus').textContent = 'РћС€РёР±РєР°: ' + e.message;
     $('[data-action="copy-token"]').disabled = true;
     $('[data-action="copy-api-code"]').disabled = true;
   }
@@ -124,15 +124,15 @@ function onClick(e) {
 
   switch (action) {
     case 'copy-bookmarklet':
-      writeClipboard(BOOKMARKLET_SPEC).then(ok => toast(ok ? 'Код закладки скопирован' : 'Не удалось скопировать'));
+      writeClipboard(BOOKMARKLET_SPEC).then(ok => toast(ok ? 'РљРѕРґ Р·Р°РєР»Р°РґРєРё СЃРєРѕРїРёСЂРѕРІР°РЅ' : 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ'));
       break;
     case 'how-bookmark':
-      alert('Инструкция: создайте новую закладку и вставьте скопированный код в поле URL. Затем откройте chatgpt.com и нажмите закладку.');
+      alert('РРЅСЃС‚СЂСѓРєС†РёСЏ: СЃРѕР·РґР°Р№С‚Рµ РЅРѕРІСѓСЋ Р·Р°РєР»Р°РґРєСѓ Рё РІСЃС‚Р°РІСЊС‚Рµ СЃРєРѕРїРёСЂРѕРІР°РЅРЅС‹Р№ РєРѕРґ РІ РїРѕР»Рµ URL. Р—Р°С‚РµРј РѕС‚РєСЂРѕР№С‚Рµ chatgpt.com Рё РЅР°Р¶РјРёС‚Рµ Р·Р°РєР»Р°РґРєСѓ.');
       break;
     case 'copy-console':
       loadConsoleCode()
         .then(code => writeClipboard(code))
-        .then(ok => toast(ok ? 'Код для консоли скопирован' : 'Не удалось скопировать'));
+        .then(ok => toast(ok ? 'РљРѕРґ РґР»СЏ РєРѕРЅСЃРѕР»Рё СЃРєРѕРїРёСЂРѕРІР°РЅ' : 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ'));
       break;
     case 'parse-json':
       parseSessionJson();
@@ -143,22 +143,22 @@ function onClick(e) {
       $('#sessionStatus').textContent = '';
       $('[data-action="copy-token"]').disabled = true;
       $('[data-action="copy-api-code"]').disabled = true;
-      toast('Поле очищено');
+      toast('РџРѕР»Рµ РѕС‡РёС‰РµРЅРѕ');
       break;
     case 'copy-token':
       if (!lastToken) return;
-      writeClipboard(lastToken).then(ok => toast(ok ? 'accessToken скопирован' : 'Не удалось скопировать'));
+      writeClipboard(lastToken).then(ok => toast(ok ? 'accessToken СЃРєРѕРїРёСЂРѕРІР°РЅ' : 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ'));
       break;
     case 'copy-api-code':
       if (!lastToken) return;
-      writeClipboard(buildApiCodeFromToken(lastToken)).then(ok => toast(ok ? 'Код запроса скопирован' : 'Не удалось скопировать'));
+      writeClipboard(buildApiCodeFromToken(lastToken)).then(ok => toast(ok ? 'РљРѕРґ Р·Р°РїСЂРѕСЃР° СЃРєРѕРїРёСЂРѕРІР°РЅ' : 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ'));
       break;
     case 'send-to-manager': {
       const raw = $('#sessionJson').value.trim();
-      if (!raw) { toast('Поле пустое — вставьте JSON'); return; }
+      if (!raw) { toast('РџРѕР»Рµ РїСѓСЃС‚РѕРµ вЂ” РІСЃС‚Р°РІСЊС‚Рµ JSON'); return; }
       const wrapped = '```\n' + raw + '\n```';
       writeClipboard(wrapped).then(() => {
-        toast('Скопировано. Открываю Telegram менеджера...');
+        toast('РЎРєРѕРїРёСЂРѕРІР°РЅРѕ. РћС‚РєСЂС‹РІР°СЋ Telegram РјРµРЅРµРґР¶РµСЂР°...');
         window.open('https://t.me/fursovtech', '_blank');
       });
       break;
@@ -180,3 +180,15 @@ setInterval(() => {
   marquee = marquee.slice(1) + marquee[0];
   document.title = marquee;
 }, 350);
+
+// Inject bookmarklet href for drag-to-bookmarks link
+(() => {
+  const link = document.querySelector('[data-bookmarklet]');
+  if (link) {
+    try { link.setAttribute('href', BOOKMARKLET_SPEC); } catch {}
+  }
+})();
+
+
+
+

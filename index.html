@@ -1,23 +1,22 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fursov - your payment assistance</title>
   <meta name="description" content="Три способа получить ссылку Stripe для ChatGPT: закладка, через консоль или вручную по API. Быстро, безопасно, понятно." />
-  <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-fursovstore.png" />
   <link rel="preload" as="image" href="image/Logo-Fursov-white.svg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header" role="banner">
     <div class="brand">
-      <div class="brand__logos">
-        <img class="brand__logo" src="image/Logo-Fursov-white.svg" alt="Fursovstore логотип" width="32" height="32" />
+      <div class="brand__logos" aria-label="Бренд Fursov и ChatGPT">
+        <img class="brand__logo" src="image/Logo-Fursov-white.svg" alt="Fursovstore" />
         <span class="v-sep" aria-hidden="true"></span>
-        <img class="brand__logo-chatgpt" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" width="28" height="28" />
+        <img class="brand__logo-chatgpt" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" />
         <span class="brand__label">ChatGPT</span>
-      </div>
       </div>
     </div>
     <nav class="links" aria-label="Ссылки магазина">
@@ -53,35 +52,37 @@
           <span class="badge">Рекомендуется</span>
         </header>
         <p class="card__desc">Создание закладки и использование её на chatgpt.com</p>
+        <h3 class="section-title">Быстрый способ</h3>
+        <ol class="steps">
+          
+            <b>Создайте закладку быстрым способом</b>: зажмите ЛКМ по кнопке ниже и перетащите её в панель закладок вашего браузера.
+            <div class="actions-inline">
+              <a class="btn btn--secondary btn--icon-lg" data-bookmarklet href="#" draggable="true" title="Перетащите в панель закладок">Ссылка Stripe</a>
+            </div>
+            <div class="actions-inline"><span class="note">Если перетаскивание не работает — используйте ручной способ ниже.</span></div>
+          
+        </ol>
+        <div class="divider" role="separator" aria-hidden="true"></div>
+        <h3 class="section-title">Ручной способ</h3>
+        <ol class="steps">
+          
+            <b>Ручной способ</b>: скопируйте код и создайте закладку вручную:
+            <br /><b>Название</b> — любое.
+            <br /><b>URL</b> — вставьте код из кнопки ниже
+            <div class="actions-inline"><button class="btn" data-action="copy-bookmarklet" title="Скопировать код закладки">Скопировать код</button></div>
+          
+        </ol>
+        <div class="divider" role="separator" aria-hidden="true"></div>
+        <h3 class="section-title">Использование на chatgpt.com</h3>
         <ol class="steps">
           <li>
-            <b>Скопируйте код</b> кнопкой ниже.
+            <b>Перейдите на chatgpt.com</b> и выполните вход в свой аккаунт.
             <div class="actions-inline">
-              <button class="btn" data-action="copy-bookmarklet" title="Скопировать код закладки">
-                <img class="btn__icon" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" width="16" height="16" />
-                Скопировать код
-              </button>
-            </div>
-          </li>
-          <li>
-            <b>Создайте закладку</b> в панели закладок браузера:
-            <br /><b>Название</b> — любое;
-            <br /><b>Поле URL</b> — вставьте скопированный код.
-            <div class="actions-inline">
-              
-            </div>
-          </li>
-          <li>
-            <b>Перейдите на chatgpt.com</b> с выполненным входом в свой аккаунт.
-            <div class="actions-inline">
-              <a class="btn btn--chatgpt" href="https://chatgpt.com" target="_blank" rel="noopener">
-                <img class="btn__icon" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" width="16" height="16" />
-                Открыть ChatGPT
-              </a>
+              <a class="btn btn--chatgpt btn--icon-lg" href="https://chatgpt.com" target="_blank" rel="noopener"><img class="btn__icon" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" />Открыть ChatGPT</a>
             </div>
           </li>
           <li><b>Нажмите закладку</b> в панели закладок (ниже адресной строки).</li>
-          <li>Через 10 - 15 секунд появится окно со ссылкой вида <code>https://checkout.stripe.com/...</code> — скопируйте её.</li>
+          <li>Через 10–15 секунд появится окно со ссылкой вида <code>https://checkout.stripe.com/...</code> — скопируйте её.</li>
         </ol>
       </article>
 
@@ -93,31 +94,28 @@
         <p class="card__desc">Получение ссылки через внутреннюю консоль браузера.</p>
         <ol class="steps">
           <li>
-            <b>Скопируйте код</b> для вставки в консоль, нажав кнопку <b>«Скопировать код для консоли»</b>.
+            <b>Скопируйте код</b> для вставки в консоль, нажав кнопку ниже.
             <div class="actions-inline">
-              <button class="btn" data-action="copy-console" title="Скопировать код для консоли">
-                <img class="btn__icon" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" width="16" height="16" />
-                Скопировать код для консоли
-              </button>
+              <button class="btn" data-action="copy-console" title="Скопировать код для консоли">Скопировать код для консоли</button>
               <a class="btn btn--secondary" href="https://playcode.io/2541097" target="_blank" rel="noopener">Открыть PlayCode</a>
             </div>
           </li>
           <li>
-            <b>Откройте chatgpt.com</b> с выполненным входом в свой аккаунт.
+            <b>Откройте chatgpt.com</b> и выполните вход в свой аккаунт.
             <div class="actions-inline">
-              <a class="btn btn--chatgpt" href="https://chatgpt.com" target="_blank" rel="noopener">
-                <img class="btn__icon" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" width="16" height="16" />
-                Открыть ChatGPT
-              </a>
+              <a class="btn btn--chatgpt btn--icon-lg" href="https://chatgpt.com" target="_blank" rel="noopener"><img class="btn__icon" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" />Открыть ChatGPT</a>
             </div>
           </li>
-          <li><b>Откройте консоль</b>: <span class="kbd">F12</span> (или <span class="kbd">Ctrl+Shift+I</span>) → вкладка <b>Console</b>.</li>
+          <li><b>Откройте консоль</b>: нажмите <b>F12</b>
+            <br /> (или <b>Ctrl+Shift+I</b>) ➡️ вкладка <b>Console</b>.</li>
           <li>
-            <b>Вставьте код</b> в Console и нажмите <span class="kbd">Enter</span>.
-            <br />В консоли появится ссылка → <code>https://checkout.stripe.com/...</code>. <b>Скопируйте её и отправьте нам.</b>
+            <b>Вставьте код</b> в Console и нажмите Enter.
+            <br />В консоли появится ссылка
+            <br /><code>https://checkout.stripe.com/...</code>
+            <br />Скопируйте её и отправьте нам.
             <div class="actions-inline">
-              <a class="btn btn--secondary" href="https://oplata.info/info/" target="_blank" rel="noopener">Чат с нами на Plati.Market <br \>(крайни заказ с Fursov)</a>
-              <a class="btn btn--secondary" href="https://t.me/fursovtech" target="_blank" rel="noopener">Telegram менеджера</a>
+              <a class="btn btn--secondary" href="https://oplata.info/info/" target="_blank" rel="noopener">Чат с нами на Plati.Market <br />(последний заказ с Fursov)</a>
+              <a class="btn btn--secondary" href="https://t.me/fursovtech" target="_blank" rel="noopener">Telegram менеджер</a>
             </div>
           </li>
         </ol>
@@ -135,16 +133,13 @@
           <li>
             Нажмите кнопку ниже, для открытия <code>chatgpt.com/api/auth/session</code>.
             <div class="actions-inline">
-              <a class="btn btn--chatgpt" href="https://chatgpt.com/api/auth/session" target="_blank" rel="noopener">
-                <img class="btn__icon" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" width="16" height="16" />
-                Открыть страницу API ответа
-              </a>
+              <a class="btn btn--chatgpt btn--icon-lg" href="https://chatgpt.com/api/auth/session" target="_blank" rel="noopener"><img class="btn__icon" src="image/Logo-ChatGPT-white.svg" alt="ChatGPT" />Открыть страницу API ответа</a>
             </div>
           </li>
           <li>
             <b>Скопируйте весь длинный текст</b> на странице:
-            <br />Нажмите <span class="kbd">Ctrl + A</span> — выделить всё;
-            <br />затем <span class="kbd">Ctrl + C</span> — скопировать.
+            <br />Нажмите <b>Ctrl + A</b> — выделить всё;
+            <br />затем <b>Ctrl + C</b> — скопировать.
           </li>
           <li>
             Вставьте весь скопированный текст в поле ниже и нажмите кнопку «Отправить менеджеру».
@@ -160,7 +155,6 @@
               <button class="btn" data-action="parse-json">Проверить JSON</button>
               <button class="btn btn--secondary" data-action="copy-token" disabled>Скопировать accessToken</button>
               <button class="btn btn--secondary" data-action="copy-api-code" disabled>Скопировать код запроса</button>
-              
             </div>
           </li>
         </ol>
@@ -173,5 +167,3 @@
   <script type="module" src="app.js"></script>
 </body>
 </html>
-
-

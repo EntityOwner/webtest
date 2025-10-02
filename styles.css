@@ -162,9 +162,22 @@ a { color: inherit; }
   color: #e9ebff; font-size: 12px;
 }
 .card__desc { color: var(--muted); margin: 0 0 var(--space-12); }
+.section-title {
+  margin: 18px 0 12px;
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: .3px;
+  font-weight: 800;
+  text-transform: none;
+  text-align: center;
+  position: relative;
+}
+.section-title::before { display: none; content: none; }
 .steps { margin: 0 0 var(--space-16) 1.2em; padding: 0; }
 .steps li { margin: 10px 0; }
 .actions-inline { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.
+.divider { display: none; }
 
 /* Inputs and buttons */
 .kbd { background: #1f1e25; border: 1px solid #32313a; border-radius: 8px; padding: 2px 6px; font-size: 12px; }
